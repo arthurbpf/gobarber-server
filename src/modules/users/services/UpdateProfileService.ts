@@ -41,8 +41,13 @@ class UpdateProfileService {
       throw new AppError('Email address already in use by another user');
     }
 
-    user.name = name;
-    user.email = email;
+    if (name) {
+      user.name = name;
+    }
+
+    if (email) {
+      user.email = email;
+    }
 
     if (password && !old_password) {
       throw new AppError('Old password is needed to change passwords');
