@@ -1,7 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-
 import User from '@modules/users/infra/typeorm/entities/User';
 
 interface IRequest {
@@ -19,8 +18,6 @@ class ListProvidersService {
     const users = await this.usersRepository.findAllProviders({
       except_user_id: user_id,
     });
-
-    users.map(user => delete user.password);
 
     return users;
   }
