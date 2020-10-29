@@ -17,13 +17,14 @@ passwordRouter.post(
   }),
   forgotPasswordController.create,
 );
+
 passwordRouter.post(
   '/reset',
   celebrate({
-    [Segments.PARAMS]: {
-      token: Joi.string().uuid().required(),
+    [Segments.BODY]: {
       password: Joi.string().required(),
       password_confirmation: Joi.string().required().valid(Joi.ref('password')),
+      token: Joi.string().uuid().required(),
     },
   }),
   resetPasswordController.create,
